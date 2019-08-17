@@ -1,0 +1,29 @@
+.logo {
+  width: 175px;
+  margin: auto;
+}
+
+#navbarTitulo {
+  font-weight: bold;
+}
+#flow-left {
+  float: left;
+  margin: 0 1px 0 1px;
+}
+
+.container {
+  width: 100%;
+}
+
+#notes-size {
+  max-width: 200px;
+  min-height: 200px;
+}
+
+#link-removed {
+  text-decoration: none;
+}
+
+#flow-left-too {
+  float: right;
+}

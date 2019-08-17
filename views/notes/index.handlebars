@@ -1,0 +1,28 @@
+{{#each notes}}
+<div class="container">
+    <div id="flow-left" class="card-group ">
+        <div class="row">
+            <div class=" col-md-12">
+                <div id="notes-size" class="card">
+                    <h5 class="card-header">{{title}}</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{details}}</p>
+                        <div class="row">
+                            <a class="card-link " href="/notes/edit/{{id}}">Edit </a>
+                            <form method="post" action="/notes/{{id}}?_method=DELETE">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input style="color: red" id="link-removed" type="submit" class="btn btn-link"
+                                    value="Delete" />
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{else}}
+<p>No notes listed</p>
+{{/each}}
