@@ -10,17 +10,14 @@ const passport = require("passport");
 
 const app = express();
 
-// Load Routes
-
+// Loading Routes
 const notes = require("./routes/notes");
 const users = require("./routes/users");
 
 // Passport config
-
 require("./config/passport")(passport);
 
 // DB config
-
 const db = require("./config/database");
 
 // Map global promise
@@ -31,12 +28,11 @@ mongoose
     useNewUrlParser: true
   })
   .then(() => {
-    console.log("Mongodb Connected!.....");
+    console.log("MongoDB Connected!.....");
   })
   .catch(err => console.log(err));
 
-// Handlebars middleware
-
+// Handlebars = middleware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -44,16 +40,13 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Static folder
-
+// Static folder set up
 app.use(express.static(path.join(__dirname, "public")));
 
 /// method override middleware
-
 app.use(methodOverride("_method"));
 
 // Sessions middleware
-
 app.use(
   session({
     secret: "secret",
@@ -63,14 +56,12 @@ app.use(
 );
 
 // Passport middleware
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(flash());
 
 //Global variables
-
 app.use(function(req, res, next) {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
@@ -80,18 +71,15 @@ app.use(function(req, res, next) {
 });
 
 // Index
-
 app.get("/", (req, res) => {
   res.render("index");
 });
-
 // about
 app.get("/about", (req, res) => {
   res.render("about");
 });
 
-// Use routes
-
+// routes for the app
 app.use("/notes", notes);
 app.use("/users", users);
 

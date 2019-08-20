@@ -3,15 +3,13 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const { ensureAuthenticate } = require("../helpers/auth");
 
-// Load Note Model
-
+// Loading the Note Model
 require("../models/Note");
 const Note = mongoose.model("notes");
 
-// note index Page
-
-router.get("/", ensureAuthenticate, (req, res) => {
-  Note.find({ user: req.user.id })
+// The Note index Page
+router.get("/", ensureAuthenticate, async (req, res) => {
+  await Note.find({ user: req.user.id })
     .sort({ date: "desc" })
     .then(notes => {
       res.render("notes/index", {
@@ -21,8 +19,8 @@ router.get("/", ensureAuthenticate, (req, res) => {
 });
 
 // Add note Form
-router.get("/add", ensureAuthenticate, (req, res) => {
-  Note.find({ user: req.user.id })
+router.get("/add", ensureAuthenticate, async (req, res) => {
+  await Note.find({ user: req.user.id })
     .sort({ date: "desc" })
     .then(notes => {
       res.render("notes/add", { notes: notes });
@@ -30,8 +28,8 @@ router.get("/add", ensureAuthenticate, (req, res) => {
 });
 
 // Edit Note Form
-router.get("/edit/:id", ensureAuthenticate, (req, res) => {
-  Note.findOne({
+router.get("/edit/:id", ensureAuthenticate, async (req, res) => {
+  await Note.findOne({
     _id: req.params.id
   }).then(note => {
     if (note.user != req.user.id) {
@@ -45,7 +43,7 @@ router.get("/edit/:id", ensureAuthenticate, (req, res) => {
   });
 });
 
-// Process Form
+// Actually the process Form
 router.post("/", ensureAuthenticate, (req, res) => {
   let errors = [];
 
@@ -74,12 +72,12 @@ router.post("/", ensureAuthenticate, (req, res) => {
   }
 });
 
-// Edit Form process
-router.put("/:id", ensureAuthenticate, (req, res) => {
-  Note.findOne({
+// This is the route for editing the form process
+router.put("/:id", ensureAuthenticate, async (req, res) => {
+  await Note.findOne({
     _id: req.params.id
   }).then(note => {
-    // new value
+    // new value into the form
     note.title = req.body.title;
     note.details = req.body.details;
     note.save().then(note => {
@@ -89,9 +87,9 @@ router.put("/:id", ensureAuthenticate, (req, res) => {
   });
 });
 
-// Delete Note
-router.delete("/:id", ensureAuthenticate, (req, res) => {
-  Note.deleteOne({
+// This is the route for deleting a Note
+router.delete("/:id", ensureAuthenticate, async (req, res) => {
+  await Note.deleteOne({
     _id: req.params.id
   }).then(() => {
     req.flash("success_msg", "The note was removed");
