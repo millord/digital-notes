@@ -9,6 +9,7 @@
 #flow-left {
   float: left;
   margin: 0 1px 0 1px;
+  padding: auto;
 }
 
 .container {
@@ -16,7 +17,7 @@
 }
 
 #notes-size {
-  max-width: 200px;
+  max-width: 50%;
   min-height: 200px;
 }
 
