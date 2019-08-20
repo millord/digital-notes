@@ -7,6 +7,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
+require("dotenv").config({ path: "./.env" });
 
 const app = express();
 
@@ -17,20 +18,15 @@ const users = require("./routes/users");
 // Passport config
 require("./config/passport")(passport);
 
-// DB config
-const db = require("./config/database");
-
 // Map global promise
 mongoose.Promise = global.Promise;
-// Connect to Mongoose
+
+//Connecting to the database
+// Connect to the database
 mongoose
-  .connect(db.mongoURI, {
-    useNewUrlParser: true
-  })
-  .then(() => {
-    console.log("MongoDB Connected!.....");
-  })
-  .catch(err => console.log(err));
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.error(err));
 
 // Handlebars = middleware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
