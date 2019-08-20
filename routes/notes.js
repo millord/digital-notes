@@ -1,14 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const { ensureAuthenticate } = require("../helpers/auth");
+const { checkAuthenticated } = require("../utits/auth");
 
 // Loading the Note Model
 require("../models/Note");
 const Note = mongoose.model("notes");
 
 // The Note index Page
-router.get("/", ensureAuthenticate, async (req, res) => {
+router.get("/", checkAuthenticated, async (req, res) => {
   await Note.find({ user: req.user.id })
     .sort({ date: "desc" })
     .then(notes => {
@@ -19,7 +19,7 @@ router.get("/", ensureAuthenticate, async (req, res) => {
 });
 
 // Add note Form
-router.get("/add", ensureAuthenticate, async (req, res) => {
+router.get("/add", checkAuthenticated, async (req, res) => {
   await Note.find({ user: req.user.id })
     .sort({ date: "desc" })
     .then(notes => {
@@ -28,12 +28,12 @@ router.get("/add", ensureAuthenticate, async (req, res) => {
 });
 
 // Edit Note Form
-router.get("/edit/:id", ensureAuthenticate, async (req, res) => {
+router.get("/edit/:id", checkAuthenticated, async (req, res) => {
   await Note.findOne({
     _id: req.params.id
   }).then(note => {
     if (note.user != req.user.id) {
-      req.flash("error_msg", "Not Authorized");
+      req.flash("error_msg", "Sorry, not authorized");
       res.redirect("/notes");
     } else {
       res.render("notes/edit", {
@@ -44,14 +44,14 @@ router.get("/edit/:id", ensureAuthenticate, async (req, res) => {
 });
 
 // Actually the process Form
-router.post("/", ensureAuthenticate, (req, res) => {
+router.post("/", checkAuthenticated, (req, res) => {
   let errors = [];
 
   if (!req.body.title) {
     errors.push({ text: "Please add a title" });
   }
   if (!req.body.details) {
-    errors.push({ text: "Please add some details" });
+    errors.push({ text: "Please add a body" });
   }
   if (errors.length > 0) {
     res.render("/add", {
@@ -66,14 +66,14 @@ router.post("/", ensureAuthenticate, (req, res) => {
       user: req.user.id
     };
     new Note(newUser).save().then(note => {
-      req.flash("success_msg", "The Journal note was Added");
+      req.flash("success_msg", "The journal note was added");
       res.redirect("/notes");
     });
   }
 });
 
 // This is the route for editing the form process
-router.put("/:id", ensureAuthenticate, async (req, res) => {
+router.put("/:id", checkAuthenticated, async (req, res) => {
   await Note.findOne({
     _id: req.params.id
   }).then(note => {
@@ -81,14 +81,14 @@ router.put("/:id", ensureAuthenticate, async (req, res) => {
     note.title = req.body.title;
     note.details = req.body.details;
     note.save().then(note => {
-      req.flash("success_msg", "The Journal note was updated");
+      req.flash("success_msg", "The journal note was updated");
       res.redirect("/notes");
     });
   });
 });
 
 // This is the route for deleting a Note
-router.delete("/:id", ensureAuthenticate, async (req, res) => {
+router.delete("/:id", checkAuthenticated, async (req, res) => {
   await Note.deleteOne({
     _id: req.params.id
   }).then(() => {

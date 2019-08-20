@@ -22,10 +22,9 @@ require("./config/passport")(passport);
 mongoose.Promise = global.Promise;
 
 //Connecting to the database
-// Connect to the database
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected!!"))
   .catch(err => console.error(err));
 
 // Handlebars = middleware
@@ -58,7 +57,7 @@ app.use(passport.session());
 app.use(flash());
 
 //Global variables
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash("error");
@@ -66,22 +65,21 @@ app.use(function(req, res, next) {
   next();
 });
 
-// Index
+// Index page
 app.get("/", (req, res) => {
   res.render("index");
 });
-// about
+// About page
 app.get("/about", (req, res) => {
   res.render("about");
 });
 
-// routes for the app
+// Routes for the app
 app.use("/notes", notes);
 app.use("/users", users);
 
 // CREATING THE SERVER
 const port = process.env.PORT || 5000;
-
 app.listen(port, () => {
-  console.log(`Server running successfully on port ${port}`);
+  console.log(`Server running successfully on port ${port}...`);
 });
