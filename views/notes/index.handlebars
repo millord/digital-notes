@@ -1,15 +1,15 @@
 {{#each notes}}
 <div class="container">
-    <div id="flow-left" class="card-group ">
+    <div id="flow-left" class="card-deck ">
         <div class="row">
-            <div class=" col-md-12">
-                <div id="notes-size" class="card">
+            <div class="col-xs-4">
+                <div id="notes-size" class="card" class=" col-xs-4">
                     <h5 class="card-header">{{title}}</h5>
                     <div class="card-body">
                         <p class="card-text">{{details}}</p>
                         <div class="row">
-                            <a class="card-link " href="/notes/edit/{{id}}">Edit </a>
-                            <form method="post" action="/notes/{{id}}?_method=DELETE">
+                            <a class="col-xs-4" class="card-link" href="/notes/edit/{{id}}">Edit </a>
+                            <form class="col-xs-4" method="post" action="/notes/{{id}}?_method=DELETE">
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <input style="color: red" id="link-removed" type="submit" class="btn btn-link"
                                     value="Delete" />

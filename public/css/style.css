@@ -9,7 +9,6 @@
 #flow-left {
   float: left;
   margin: 0 1px 0 1px;
-  padding: auto;
 }
 
 .container {
@@ -17,7 +16,7 @@
 }
 
 #notes-size {
-  max-width: 50%;
+  max-width: 32em;
   min-height: 200px;
 }
 
@@ -25,6 +24,6 @@
   text-decoration: none;
 }
 
-#flow-left-too {
-  float: right;
+.card {
+  margin: 10px 10px 10px 10px;
 }
