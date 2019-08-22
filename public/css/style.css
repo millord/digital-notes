@@ -11,16 +11,12 @@
   margin: 0 1px 0 1px;
 }
 
-#float-right {
-  float: right;
-}
-
 .container {
   width: 100%;
 }
 
 #notes-size {
-  max-width: 32em;
+  max-width: 34em;
   min-height: 200px;
 }
 

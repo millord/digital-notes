@@ -1,6 +1,5 @@
 <div class="container-fluid">
     <div class="card card-body">
-
         <h3>Digital Journal | Create A Note</h3>
         <form id="form-position" action="/notes" method="post">
             <div class="form-group">
@@ -16,9 +15,7 @@
                     press
                     submit</small></div>
             <button type="submit" class="btn btn-primary">Submit</button>
-
         </form>
-
     </div>
     <div>
         {{#each notes}}
@@ -26,6 +23,7 @@
             <div id="flow-left" class="card-deck">
                 <div class="row">
                     <div class="col-xs-4">
+
                         <div id="notes-size" class="card" class="col-xs-4">
                             <h5 class="card-header">{{title}}</h5>
                             <div class="card-body">
@@ -35,7 +33,6 @@
                                     <input type="hidden" name="_method" value="DELETE" />
                                     <input style="color: red" id="link-removed" type="submit" class="btn btn-link"
                                         value="Delete" />
-
                                 </form>
                             </div>
                         </div>
@@ -43,7 +40,6 @@
                 </div>
             </div>
         </div>
-
         {{else}}
         <p>No notes listed</p>
         {{/each}}
