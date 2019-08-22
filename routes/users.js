@@ -63,7 +63,7 @@ router.post("/register", (req, res) => {
             newUser
               .save()
               .then(user => {
-                passport.authenticate("local")(req, res, function() {
+                passport.authenticate("local")(req, res, () => {
                   res.redirect("/notes");
                 });
               })
@@ -78,7 +78,7 @@ router.post("/register", (req, res) => {
   }
 });
 
-// Log out user
+// Log out user route
 router.get("/logout", (req, res) => {
   req.logout();
   req.flash("success_msg", "You are log out");
