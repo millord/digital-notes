@@ -63,8 +63,9 @@ router.post("/register", (req, res) => {
             newUser
               .save()
               .then(user => {
-                req.flash("success_msg", "you are now register and can login");
-                res.redirect("/users/login");
+                passport.authenticate("local")(req, res, function() {
+                  res.redirect("/notes");
+                });
               })
               .catch(err => {
                 console.log(err);
