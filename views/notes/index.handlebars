@@ -1,19 +1,18 @@
 {{#each notes}}
 <div class="container">
-    <div id="flow-left" class="card-deck ">
+    <div id="flow-left" class="card-deck">
         <div class="row">
             <div class="col-xs-4">
-                <div id="notes-size" class="card" class=" col-xs-4">
+                <div id="notes-size" class="card" class="col-xs-4">
                     <h5 class="card-header">{{title}}</h5>
                     <div class="card-body">
                         <p class="card-text">{{details}}</p>
-                        <div class="row">
-                            <a class="col-xs-4" class="card-link" href="/notes/edit/{{id}}">Edit </a>
-                            <form class="col-xs-4" method="post" action="/notes/{{id}}?_method=DELETE">
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <input style="color: red" id="link-removed" type="submit" class="btn btn-link"
-                                    value="Delete" />
-                        </div>
+                        <a class="card-link " href="/notes/edit/{{id}}">Edit </a>
+                        <form id="flow-left" method="post" action="/notes/{{id}}?_method=DELETE">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input style="color: red" id="link-removed" type="submit" class="btn btn-link"
+                                value="Delete" />
+
                         </form>
                     </div>
                 </div>
@@ -22,7 +21,8 @@
     </div>
 </div>
 
-
 {{else}}
 <p>No notes listed</p>
 {{/each}}
+</div>
+</div>

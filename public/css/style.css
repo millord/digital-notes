@@ -7,8 +7,12 @@
   font-weight: bold;
 }
 #flow-left {
-  float: left;
+  float: right;
   margin: 0 1px 0 1px;
+}
+
+#float-right {
+  float: right;
 }
 
 .container {
