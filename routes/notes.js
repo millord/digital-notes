@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const { checkAuthenticated } = require("../utits/auth");
+const Handlebars = require("handlebars");
 
 // Loading the Note Model
 require("../models/Note");

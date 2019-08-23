@@ -1,5 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const Handlebars = require("handlebars");
 const path = require("path");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
