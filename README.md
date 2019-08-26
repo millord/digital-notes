@@ -1,7 +1,9 @@
  # Digital Notes App - Chingu Voyage 11 pre-work project
 
 This is a the README file for thte Digital Notes app repo, which is the solo projoct of
-Chingu tier 3.
+Chingu tier 3. In this app you will get to create notes, update and delete them (CRUD).
+I used for this app, node.js, express.js, mongodb for the backend and handlebar.js and bootstrap
+for the front-end.
 
 In this README you will know how to:
 
