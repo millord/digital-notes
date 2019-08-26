@@ -13,7 +13,7 @@ In this README you will know how to:
 
 ## How to install it
 
-1.clone this repo going to your terminal:
+1. Clone this repo going to your terminal:
 
 ``` git clone https://github.com/millord/digital-notes.git ```
 
