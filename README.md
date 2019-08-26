@@ -10,7 +10,7 @@ In this README you will know how to:
 
 ## How to install it
 
-Just clone this repo and in you terminal:
+```Just clone this repo and in you terminal:
 
 - npm install
 
