@@ -24,7 +24,7 @@ In this README you will know how to:
 ```
 ## Adding uri of yor mongodb connection:
 
-- create a .env file in the root directory and add the following (you need mongodb installed):
+- create a .env file in the root directory and add the following (you need to have mongodb installed):
 
  "MONGO_URI": "mongodb://localhost/digital-notes"
 
