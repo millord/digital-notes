@@ -26,7 +26,7 @@ In this README you will know how to:
 
 - create a .env file in the root directory and add the following (you need to have mongodb installed):
 
- "MONGO_URI": "mongodb://localhost/digital-notes"
+ MONGO_URI: mongodb://localhost/digital-notes
 
 ## How to run it
 
