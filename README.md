@@ -18,7 +18,7 @@ Just clone this repo and in you terminal:
 ```
 ## Adding uri of yor mongodb connection:
 
-- create a .env file in the root directory 
+- create a .env file in the root directory and add the following (you need mongodb installed):
 
  "MONGO_URI": "mongodb://localhost/digital-notes"
 
