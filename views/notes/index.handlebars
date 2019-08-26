@@ -1,7 +1,7 @@
-{{#each notes}}
 <div class="container">
+    {{#each notes}}
     <div class="row">
-        <div class="col-sm-4 py-2">
+        <div class="col-sm-5 py-2">
             <div class="card card-body h-100">
                 <h5 class="card-header">{{title}}</h5>
                 <div class="card-body">
@@ -16,7 +16,6 @@
         </div>
     </div>
 </div>
-
 {{else}}
 <p>No notes listed</p>
 {{/each}}
